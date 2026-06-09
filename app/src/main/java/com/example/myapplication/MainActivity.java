@@ -1,12 +1,12 @@
-package com.example.myapplication;
+package com.example.myapplication;                  // namespace cua app
 
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-import com.example.myapplication.databinding.ActivityMainBinding;
+import android.os.Bundle;                           // container luu du lieu
+import androidx.appcompat.app.AppCompatActivity;    // class cha cho activity hien dai
+import androidx.navigation.NavController;           // chuyen man hinh fragment
+import androidx.navigation.Navigation;              // helper class de lay NavController
+import androidx.navigation.ui.AppBarConfiguration;  // cau hinh: toolbar, back button, navigation
+import androidx.navigation.ui.NavigationUI;         // ket noi toolbar voi navigation
+import com.example.myapplication.databinding.ActivityMainBinding;   // view binding: android tu generate class tu XML layout
 
 public class MainActivity extends AppCompatActivity {
 
