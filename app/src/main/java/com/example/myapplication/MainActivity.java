@@ -24,10 +24,28 @@ public class MainActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        // Nút FAB chuyển sang tab xem ghi chú (SecondFragment)
-        binding.fab.setOnClickListener(view ->
-                navController.navigate(R.id.action_FirstFragment_to_SecondFragment)
-        );
+        // ===== FAB điều hướng 2 chiều =====
+        binding.fab.setOnClickListener(view -> {
+            if (navController.getCurrentDestination() == null) return;
+            int currentId = navController.getCurrentDestination().getId();
+
+            if (currentId == R.id.FirstFragment) {
+                navController.navigate(R.id.action_FirstFragment_to_SecondFragment);
+            } else if (currentId == R.id.SecondFragment) {
+                navController.navigate(R.id.action_SecondFragment_to_FirstFragment);
+            }
+        });
+
+        // ===== Đổi icon FAB theo fragment =====
+        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+            if (destination.getId() == R.id.SecondFragment) {
+                // Đang ở danh sách → icon để quay về trang thêm note
+                binding.fab.setImageResource(android.R.drawable.ic_menu_edit);
+            } else {
+                // Đang ở trang thêm note → icon để xem danh sách
+                binding.fab.setImageResource(android.R.drawable.ic_menu_agenda);
+            }
+        });
     }
 
     @Override
